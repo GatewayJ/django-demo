@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,7 +24,7 @@ SECRET_KEY = 'z2t@zo1p)kt1olm=_!f*3ebw9%vyp^#4-he6&&%)*0$od3b374'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -78,10 +77,15 @@ WSGI_APPLICATION = 'Blog_DjangoBackEnd.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',   # 数据库引擎
+        'NAME': 'blog_admin',  # 数据库名，先前创建的
+        'USER': 'blog',     # 用户名，可以自己创建用户
+        'PASSWORD': 'root',  # 密码
+        'HOST': '127.0.0.1',  # mysql服务所在的主机ip
+        'PORT': '3306'
     }
 }
+
 
 
 # Password validation
@@ -124,10 +128,9 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    # '/path/to/others/static/',  # 用不到的时候可以不写这一行
 )
 MEDIA_URL = '/media/'
-MEIDA_ROOT = os.path.join(BASE_DIR, "media"),
+MEIDA_ROOT = os.path.join(BASE_DIR, "media")
 
 SIMPLEUI_HOME_INFO = False
 SIMPLEUI_ANALYSIS = False

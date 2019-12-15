@@ -16,8 +16,3 @@ class Artical(models.Model):
     @property
     def content_display(self):
         return mark_safe(self.content)
-
-
-class AticalImage(models.Model):
-    name = models.CharField((u'name'), max_length=100)
-    photo = models.ImageField(upload_to=settings.MEIDA_ROOT, null=True, blank=True, verbose_name=(u'photo'))

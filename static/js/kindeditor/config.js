@@ -7,7 +7,7 @@ KindEditor.ready(function (k) {
         extraFileUploadParams: {
                 csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val()
             },
-         filePostName: 'fafafa',
+         filePostName: 'imgFile',
         width:'1400px',
         height:'700px',
     });
