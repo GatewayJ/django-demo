@@ -3,7 +3,7 @@ KindEditor.ready(function (k) {
             allowImageRemote: true,
             allowImageUpload: true,
             allowFileManager: true,
-        uploadJson : 'upload/kindeditor/', //这个是上传图片后台处理的url
+        uploadJson : '/upload/kindeditor/', //这个是上传图片后台处理的url
         extraFileUploadParams: {
                 csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val()
             },

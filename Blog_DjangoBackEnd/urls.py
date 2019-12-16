@@ -14,16 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,re_path
+from django.urls import path, re_path
 from django.urls import include
 from django.views.static import serve
 from django.conf import settings
 from blog import views
 
 urlpatterns = [
-    # todo  创建文章和修改文章上传图片地址不一至
-    path('admin/blog/artical/<int:blog_id>/change/upload/kindeditor/',views.upload_file),
-    path('admin/', admin.site.urls),
     path('', include('blog.urls')),
-    re_path(r'(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
+    path('admin/', admin.site.urls),
+    path('upload/kindeditor/', views.upload_file),
+    re_path('upload/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 ]

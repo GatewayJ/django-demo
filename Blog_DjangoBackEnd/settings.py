@@ -11,9 +11,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -26,11 +26,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-
 # Application definition
 
 INSTALLED_APPS = [
-     'simpleui',
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,22 +70,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Blog_DjangoBackEnd.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',   # 数据库引擎
+        'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
         'NAME': 'blog_admin',  # 数据库名，先前创建的
-        'USER': 'blog',     # 用户名，可以自己创建用户
+        'USER': 'blog',  # 用户名，可以自己创建用户
         'PASSWORD': 'root',  # 密码
         'HOST': '127.0.0.1',  # mysql服务所在的主机ip
         'PORT': '3306'
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -106,7 +102,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -120,7 +115,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
@@ -128,8 +122,9 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'media'),
 )
-MEDIA_URL = '/media/'
+MEDIA_URL = '/upload/media/'
 MEIDA_ROOT = os.path.join(BASE_DIR, "media")
 
 SIMPLEUI_HOME_INFO = False
