@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from blog.serializers import UserSerializer
 from rest_framework.response import Response
 from django.conf import settings
-
+from blog.models import ActicalImage
 
 # Create your views here.
 
@@ -21,22 +21,18 @@ class ActicleList(viewsets.GenericViewSet, mixins.ListModelMixin):
         return Response({"1": 1})
 
 
+from django.core.files.base import ContentFile
 def upload_file(request):
-    '''
-    kindeditor图片上传返回数据格式说明：
-    {"error": 1, "message": "出错信息"}
-    {"error": 0, "url": "图片地址"}
-    '''
-    result = {"error": 1, "message": u"上传失败"}
-    files = request.FILES.get("imgFile", None)  # input type="file" 中name属性对应的值为imgFile
-    type = request.GET['dir']  # 获取资源类型
-    print(files, type)
-    if files:
-        result = process_upload(files, type)
-    # 结果以json形式返回
-    return HttpResponse(json.dumps(result), content_type="application/json")
-
-
+    file_content = ContentFile(request.FILES['imgFile'].read())
+    # ImageField的save方法，第一个参数是保存的文件名，第二个参数是ContentFile对象，里面的内容是要上传的图片、视频的二进制内容
+    image = ActicalImage()
+    image.image_path.save(request.FILES['imgFile'].name, file_content)
+    image.flieimage='as'
+    # image.image_path=request.FILES.get("imgFile", None)
+    # image.image_path.save()
+    print(image.image_path.url)
+    image.save()
+    return HttpResponse(json.dumps({"error": 0, "url": image.image_path.url}), content_type="application/json")
 def is_ext_allowed(type, ext):
     '''
     根据类型判断是否支持对应的扩展名
