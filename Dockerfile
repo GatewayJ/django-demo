@@ -7,8 +7,8 @@ MAINTAINER The CentOS Project <835269233@qq.com>
 EXPOSE 80
 RUN pip3 install -r requirements.txt -i https://pypi.douban.com/simple/
 
-#复制网站首页文件至镜像中web站点下
 WORKDIR /home/wwww/blog/
 ADD ./  .
 COPY supervisord.conf /etc/supervisor/
+COPY nginx.conf /etc/nginx/nginx.conf
 CMD ["supervisord", "-n"]
