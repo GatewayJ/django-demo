@@ -1,4 +1,4 @@
-FROM blog/centos:v2
+FROM gatewayj/python-centos:v1
 
 #维护人的信息
 MAINTAINER The CentOS Project <835269233@qq.com>
