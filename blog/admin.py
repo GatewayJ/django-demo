@@ -8,7 +8,7 @@ from django.core.exceptions import (ValidationError)
 
 @admin.register(Artical)
 class ArticalAdmin(admin.ModelAdmin):
-    list_display = ['title','summary']
+    list_display = ['title','summary','pushed']
 
     def get_object(self, request, object_id, from_field=None):
         """
