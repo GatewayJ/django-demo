@@ -8,7 +8,7 @@ EXPOSE 80
 
 WORKDIR /home/www/blog/
 ADD ./  .
-RUN pip3 install -r requirements.txt -i https://pypi.douban.com/simple/ && python3 manage.py collectstatic
+RUN pip3 install -r requirements.txt -i https://pypi.douban.com/simple/ && python3 manage.py collectstatic && python3 manage.py migrate
 COPY supervisord.conf /etc/supervisor/
 COPY nginx.conf /etc/nginx/nginx.conf
 CMD ["supervisord", "-n"]
