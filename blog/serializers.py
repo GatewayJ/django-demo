@@ -1,14 +1,14 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-
+from blog.models import Artical
 
 # Serializers define the API representation.
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class ArticalSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['url', 'username', 'email', 'is_staff']
+        model = Artical
+        fields = ("__all__")
 
 
 class ImageField(serializers.ImageField):

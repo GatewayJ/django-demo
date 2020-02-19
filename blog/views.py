@@ -4,21 +4,29 @@ import uuid
 from django.shortcuts import HttpResponse
 from rest_framework import viewsets, mixins
 from django.contrib.auth.models import User
-from blog.serializers import UserSerializer
+from blog.serializers import ArticalSerializer
 from rest_framework.response import Response
 from django.conf import settings
+from blog.models import Artical
 from blog.models import ActicalImage
 
 # Create your views here.
 
 
 class ActicleList(viewsets.GenericViewSet, mixins.ListModelMixin):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+    queryset = Artical.objects.all()
+    serializer_class = ArticalSerializer
 
     def list(self, request, *args, **kwargs):
-        print(111)
-        return Response({"1": 1})
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 from django.core.files.base import ContentFile
