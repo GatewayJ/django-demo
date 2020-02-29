@@ -1,8 +1,9 @@
-import re
+#coding:utf-8
+
 from django.db import models
 from django.conf import settings
 from django.utils.safestring import mark_safe
-
+from bs4 import BeautifulSoup
 from django.core.files.storage import FileSystemStorage
 
 fs = FileSystemStorage(settings.MEIDA_ROOT)
@@ -17,8 +18,8 @@ class Artical(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 
     def summary(self):
-        p = re.compile('<img[^>]+>')
-        return  mark_safe(p.sub("<span>#图片# </span>",self.content[:1000]))
+        bs = BeautifulSoup(self.content[:1000], "html.parser")
+        return bs.get_text()
 
     summary.short_description = '摘要'
 

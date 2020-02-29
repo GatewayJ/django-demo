@@ -1,35 +1,13 @@
 import os
 import json
 import uuid
+from django.core.files.base import ContentFile
 from django.shortcuts import HttpResponse
-from rest_framework import viewsets, mixins
-from django.contrib.auth.models import User
-from blog.serializers import ArticalSerializer
-from rest_framework.response import Response
 from django.conf import settings
-from blog.models import Artical
 from blog.models import ActicalImage
-
 # Create your views here.
 
 
-class ActicleList(viewsets.GenericViewSet, mixins.ListModelMixin):
-    queryset = Artical.objects.all()
-    serializer_class = ArticalSerializer
-
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-
-from django.core.files.base import ContentFile
 def upload_file(request):
     file_content = ContentFile(request.FILES['imgFile'].read())
     # ImageField的save方法，第一个参数是保存的文件名，第二个参数是ContentFile对象，里面的内容是要上传的图片、视频的二进制内容
@@ -41,6 +19,8 @@ def upload_file(request):
     print(image.image_path.url)
     image.save()
     return HttpResponse(json.dumps({"error": 0, "url": image.image_path.url}), content_type="application/json")
+
+
 def is_ext_allowed(type, ext):
     '''
     根据类型判断是否支持对应的扩展名

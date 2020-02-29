@@ -6,9 +6,11 @@ from blog.models import Artical
 
 
 class ArticalSerializer(serializers.ModelSerializer):
+    pushed = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
     class Meta:
         model = Artical
-        fields = ("__all__")
+        fields = ('id','title','summary','content','pushed')
+
 
 
 class ImageField(serializers.ImageField):
