@@ -21,7 +21,7 @@ from django.conf import settings
 from blog import views
 
 urlpatterns = [
-    path('', include('blog.urls')),
+    path('api/', include('blog.urls')),
     path('admin/', admin.site.urls),
     path('upload/kindeditor/', views.upload_file),
     re_path('upload/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),

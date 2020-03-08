@@ -1,8 +1,8 @@
-from django.urls import path
+from django.urls import path,include
 from blog import api
+from rest_framework import routers
 
-urlpatterns = [
-    path('blog/', api.ActicleList.as_view({'get': 'list', }),name = 'artical-detail'),
+router = routers.DefaultRouter()
+router.register(r'artical', api.ArticleList)
 
-]
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEIDA_ROOT)
+urlpatterns = router.urls
