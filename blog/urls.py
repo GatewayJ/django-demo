@@ -1,4 +1,4 @@
-from django.urls import path,include
+from blog import views
 from blog import api
 from rest_framework import routers
 

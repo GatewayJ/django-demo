@@ -1,6 +1,5 @@
 from django.contrib import admin
 from blog.models import Artical
-from django.utils.safestring import mark_safe
 from django.core.exceptions import (ValidationError)
 
 # Register your models here.

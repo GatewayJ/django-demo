@@ -26,3 +26,5 @@ urlpatterns = [
     path('upload/kindeditor/', views.upload_file),
     re_path('upload/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 ]
+handler404='blog.views.page_not_found'
+handler500='blog.views.page_error'

@@ -52,3 +52,11 @@ def process_upload(files, type):
         for i in files.chunks():
             file_path.write(i)
     return {"error": 0, "url": img_url}
+
+
+def page_not_found(request,exception):
+    return HttpResponse('404.html')
+
+
+def page_error(request):
+    return HttpResponse('500.html')
