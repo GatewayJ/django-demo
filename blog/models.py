@@ -14,7 +14,7 @@ from django.utils.six.moves.urllib.parse import urljoin
 class Artical(models.Model):
     title = models.CharField(max_length=225, verbose_name='标题')
     content = UEditorField(u'内容	',width='100%',height='100%',toolbars="full", imagePath=settings.MEIDA_ROOT+'/', upload_settings={"imageMaxSize":1204000},
-             settings={},command=None,blank=True)
+             settings={},blank=True)
     pushed = models.DateTimeField(verbose_name="发布时间")
     created = models.DateTimeField(auto_now_add=True, verbose_name="添加时间")
     updated = models.DateTimeField(auto_now=True, verbose_name="更新时间")

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'DjangoUeditor',
     'rest_framework',
     'blog.apps.BlogConfig'
 ]
