@@ -4,14 +4,14 @@ import uuid
 from django.core.files.base import ContentFile
 from django.shortcuts import HttpResponse
 from django.conf import settings
-from blog.models import ActicalImage
+from blog.models import ArticalImage
 # Create your views here.
 
 
 def upload_file(request):
     file_content = ContentFile(request.FILES['imgFile'].read())
     # ImageField的save方法，第一个参数是保存的文件名，第二个参数是ContentFile对象，里面的内容是要上传的图片、视频的二进制内容
-    image = ActicalImage()
+    image = ArticalImage()
     image.image_path.save(request.FILES['imgFile'].name, file_content)
     image.flieimage='as'
     # image.image_path=request.FILES.get("imgFile", None)

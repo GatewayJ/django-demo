@@ -1,5 +1,6 @@
 from django.contrib import admin
 from blog.models import Artical
+from blog.models import ArticalTag
 from django.core.exceptions import (ValidationError)
 
 # Register your models here.
@@ -7,8 +8,8 @@ from django.core.exceptions import (ValidationError)
 
 @admin.register(Artical)
 class ArticalAdmin(admin.ModelAdmin):
-    list_display = ['title','summary','pushed']
-
+    list_display = ['title','summary','tag','published','pushed']
+    list_filter = ('published', 'pushed', 'articaltag')
     def get_object(self, request, object_id, from_field=None):
         """
         Return an instance matching the field and value provided, the primary
@@ -32,3 +33,8 @@ class ArticalAdmin(admin.ModelAdmin):
             'js/kindeditor/lang/zh-CN.js',
             'js/kindeditor/config.js'
         ]
+
+
+@admin.register(ArticalTag)
+class ArticalAdmin(admin.ModelAdmin):
+    list_display = ['id','tag_content']
