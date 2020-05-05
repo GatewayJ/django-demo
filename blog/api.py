@@ -2,6 +2,7 @@
 from rest_framework import mixins
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework.filters import OrderingFilter
 from blog.serializers import ArticalSerializer
 from blog.serializers import ArticalListSerializer
 from blog.models import Artical
@@ -10,7 +11,9 @@ from blog.models import Artical
 class ArticleList(viewsets.ReadOnlyModelViewSet):
     queryset = Artical.objects.all()
     serializer_class = ArticalSerializer
-    ordering_fields = ['-pushed', ]
+    filter_backends = (OrderingFilter,)
+    ordering_fields = ('published',)
+    ordering = ('-published',)
     lookup_field = 'title'
 
 
