@@ -12,8 +12,8 @@ class ArticleList(viewsets.ReadOnlyModelViewSet):
     queryset = Artical.objects.all()
     serializer_class = ArticalSerializer
     filter_backends = (OrderingFilter,)
-    ordering_fields = ('published',)
-    ordering = ('-published',)
+    ordering_fields = ('pushed',)
+    ordering = ('-pushed',)
     lookup_field = 'title'
 
 
