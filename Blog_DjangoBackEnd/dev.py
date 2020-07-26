@@ -135,3 +135,10 @@ MEIDA_ROOT = os.path.join(BASE_DIR, "media")
 SIMPLEUI_HOME_INFO = False
 SIMPLEUI_ANALYSIS = False
 SIMPLEUI_INDEX = 'http://127.0.0.1:8000/admin/'
+
+
+REST_FRAMEWORK = {
+  # 对所有分页器生效，但优先级低
+  'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination', 
+  'PAGE_SIZE': 5, # 每页显示5条数据
+}
